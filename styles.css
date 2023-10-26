@@ -1,0 +1,104 @@
+body, html {
+    height: 100%;
+    margin: 0;
+    background: repeating-linear-gradient(to bottom, #ff8250, #db3e00);
+}
+
+body {
+    touch-action: manipulation;
+    -ms-touch-action: manipulation;
+    touch-zooming: none;
+    user-zoom: fixed;
+    max-height: 100vh;
+    overflow-y: hidden;
+}
+
+.container {
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    height: 100vh; /* Adicionamos esta linha para ocupar a altura total da tela */
+    display: flex; /* Adicionamos esta linha para usar flexbox */
+    justify-content: center; /* Adicionamos esta linha para centralizar horizontalmente */
+    align-items: center; /* Adicionamos esta linha para centralizar verticalmente */
+}
+
+#confettiCanvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+#downloadButtonGif, #downloadButtonPng {
+    position: absolute;
+    top: 10px;
+    z-index: 3;
+}
+
+#downloadButtonGif {
+    right: 10px;
+}
+
+#downloadButtonPng {
+    right: 60px; /* Espaçamento entre os botões */
+}
+
+
+.imagem {
+    max-width: 100%;
+    height: auto;
+    max-height: 540px;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 25px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra sutil */
+}
+
+.texto-deslizante {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    font-weight: 500;
+    position: absolute;
+    white-space: nowrap;
+    transform: translateY(-50%);
+    animation: deslizar 10s linear infinite;
+}
+
+.texto-deslizante:nth-child(odd) {
+    left: -100%;
+}
+
+.texto-deslizante:nth-child(even) {
+    right: -100%;
+    transform: translateY(-50%) rotateY(180deg);
+}
+
+@keyframes deslizar {
+    100% {
+        left: 100%;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    .container {
+        flex-direction: column; /* Adicionamos esta linha para colocar os elementos um abaixo do outro */
+    }
+
+    .texto-deslizante {
+        width: 100%; /* Adicionamos esta linha para ocupar toda a largura disponível */
+        transform: none; /* Removemos a transformação */
+        animation: none; /* Removemos a animação */
+        margin-bottom: 10px; /* Adicionamos algum espaço entre os textos */
+    }
+
+    .imagem {
+        max-height: none; /* Adicionamos esta linha para remover a altura máxima da imagem */
+    }
+}
